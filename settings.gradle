@@ -1,9 +1,10 @@
 rootProject.name='Android-Frame'
 include ':app'
-include ':Templets:templet'
-include ':Modules:module'
-include ':Plugins:plugin'
 include ':base'
 include ':library'
 include ':Demos:demo'
 include ':Libraries:database'
+include ':Plugins:plugin'
+include ':Templates:template'
+include ':Modules:module'
+
