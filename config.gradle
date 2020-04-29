@@ -1,0 +1,135 @@
+ext {
+    //生產/開發環境（正式/測試）
+    isRelease = true
+    componnet_router_doc_folder = "~AndroidStudioProjects/Tongson/Android-Frame/Doc"
+
+    //建立Map存儲，對象名、key都可以自定義，groovy糖果語法，非常靈活
+    androidId = [
+            compileSdkVersion        : 28,
+            buildToolsVersion        : 28,
+            minSdkVersion            : 19,
+            targetSdkVersion         : 28,
+            versionCode              : 1,
+            versionName              : "1.0.0",
+            testInstrumentationRunner: "androidx.test.runner.AndroidJUnitRunner"
+    ]
+    appId = [
+            appId: "pr.tongson.app"
+    ]
+
+    url = [
+            "debug"  : "",
+            "release": ""
+    ]
+
+
+    supportLibrary = "28.0.0"
+    versions = [
+            component_version: "1.8.0",
+            androidx         : "1.1.0",
+            kotlin_version   : "1.3.72",
+            lifecycle        : "2.2.0"
+    ]
+
+    supportDependenciesX = [
+            "material"         : "com.google.android.material:material:${versions.androidx}",
+            "xappcompat"       : "androidx.appcompat:appcompat:${versions.androidx}",
+            "xrecyclerview"    : "androidx.recyclerview:recyclerview:${versions.androidx}",
+            "xannotation"      : "androidx.annotation:annotation:${versions.androidx}",
+            "xsupportv4"       : "androidx.legacy:legacy-support-v4:1.0.0",
+            "xconstraintlayout": "androidx.constraintlayout:constraintlayout:1.1.3",
+            "xlifecycle"       : "androidx.lifecycle:lifecycle-extensions:${versions.lifecycle}",
+    ]
+
+    supportDependenciesKotlinX = [
+            "stdlib"           : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin_version}",
+            "ktx"              : "androidx.core:core-ktx:1.2.0",
+            "xViewmodelKt"     : "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifecycle}",
+            "coroutines"       : "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5",
+            "anko"             : "org.jetbrains.anko:anko:0.10.8",
+            "material"         : "com.google.android.material:material:${versions.androidx}",
+            "xappcompat"       : "androidx.appcompat:appcompat:${versions.androidx}",
+            "xrecyclerview"    : "androidx.recyclerview:recyclerview:${versions.androidx}",
+            "xannotation"      : "androidx.annotation:annotation:${versions.androidx}",
+            "xsupportv4"       : "androidx.legacy:legacy-support-v4:1.0.0",
+            "xconstraintlayout": "androidx.constraintlayout:constraintlayout:1.1.3",
+            "xlifecycle"       : "androidx.lifecycle:lifecycle-extensions:${versions.lifecycle}"
+    ]
+
+    testDependenciesX = [
+            "junit"    : "junit:junit:4.13",
+            "xjunitext": "androidx.test.ext:junit:1.1.1",
+            "espresso" : "androidx.test.espresso:espresso-core:3.2.0"
+    ]
+
+    supportDependenciesKotlin = [
+            "stdlib"   : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin_version}",
+            "appcompat": "com.android.support:appcompat-v7:28.0.0",
+    ]
+
+    testDependencies = [
+            "junit"   : "junit:junit:4.13",
+            "runner"  : "com.android.support.test:runner:1.0.2",
+            "espresso": "com.android.support.test.espresso:espresso-core:3.0.2"
+    ]
+
+
+    componentDependencies = [
+            component_annotation: "com.github.xiaojinzi123.Component:component-annotation:${versions.component_version}-androidx",
+            component_compiler  : "com.github.xiaojinzi123.Component:component-compiler:${versions.component_version}-androidx",
+            component_impl      : "com.github.xiaojinzi123.Component:component-impl:${versions.component_version}-androidx",
+            component_impl_rx   : "com.github.xiaojinzi123.Component:component-impl-rx:${versions.component_version}-androidx"
+    ]
+
+    color = [
+            colorPrimary          : "应用的主要色调,actionBar默认使用该颜色,Toolbar导航栏的底色",
+            colorPrimaryDark      : "应用的主要暗色调,statusBarColor默认使用该颜色",
+            statusBarColor        : "状态栏颜色,默认使用colorPrimaryDark",
+            windowBackground      : "窗口背景颜色",
+            navigationBarColor    : "底部栏颜色",
+            colorForeground       : "应用的前景色,ListView的分割线,switch滑动区默认使用该颜色",
+            colorBackground       : "应用的背景色,popMenu的背景默认使用该颜色",
+            colorAccent           : "CheckBox,RadioButton,SwitchCompat等一般控件的选中效果默认采用该颜色",
+            colorControlNormal    : "CheckBox,RadioButton,SwitchCompat等默认状态的颜色",
+            colorControlHighlight : "控件按压时的色调",
+            colorControlActivated : "控件选中时的颜色,默认使用colorAccent",
+            colorButtonNormal     : "默认按钮的背景颜色",
+            editTextColor         : "默认EditView输入框字体的颜色",
+            textColor             : "Button,textView的文字颜色",
+            textColorPrimary      : "应用的主要文字颜色, actionBar的标题文字默认使用该颜色;DisableOnly,RadioButton,checkbox等控件的文字",
+            colorSwitchThumbNormal: "switch thumbs 默认状态的颜色.(switch off)"
+    ]
+
+
+    libDependencies = [
+
+    ]
+
+    componentsDependencies = [
+
+
+    ]
+
+
+    baseDependencies = [
+    ]
+
+
+    moduleDependencies = [
+
+    ]
+
+    templetDependencies = [
+
+    ]
+
+
+    pluginDependencies = [
+
+    ]
+
+    appDependencies = [
+
+    ]
+
+}
