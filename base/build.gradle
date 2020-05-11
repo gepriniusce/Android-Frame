@@ -40,4 +40,7 @@ dependencies {
     testImplementation testDependenciesX.junit
     androidTestImplementation testDependenciesX.xjunitext
     androidTestImplementation testDependenciesX.espresso
+    api project(path: ':library')
+    //api project(path: ':library')
+
 }
