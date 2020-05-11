@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pad_navigation"
+    app:startDestination="@id/collectionFragment">
+
+    <fragment
+        android:id="@+id/collectionFragment"
+        android:name="pr.tongson.template.pad.applets.CollectionFragment"
+        android:label="fragment_collection"
+        tools:layout="@layout/fragment_collection" />
+    <fragment
+        android:id="@+id/popularFragment"
+        android:name="pr.tongson.template.pad.applets.PopularFragment"
+        android:label="fragment_popular"
+        tools:layout="@layout/fragment_popular" />
+    <fragment
+        android:id="@+id/recentlyFragment"
+        android:name="pr.tongson.template.pad.applets.RecentlyFragment"
+        android:label="fragment_recently"
+        tools:layout="@layout/fragment_recently" />
+    <fragment
+        android:id="@+id/commonlyFragment"
+        android:name="pr.tongson.template.pad.applets.CommonlyFragment"
+        android:label="fragment_commonly"
+        tools:layout="@layout/fragment_commonly" />
+</navigation>
