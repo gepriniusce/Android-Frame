@@ -14,13 +14,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * 类名      PackageUtils.java</br>
- * 创建日期 2012-11-21</br>
- * 作者  LiWenLong</br>
- * Email lendylongli@gmail.com</br>
- * 更新时间  下午6:47:17</br>
- * 最后更新者 LeOn</br>
- * 说明   应用信息工具类</br>
+ *
  */
 public class PackageUtils {
 
@@ -90,7 +84,7 @@ public class PackageUtils {
             Intent intent = getAppLaunchIntent(context, packagename);
             context.getApplicationContext().startActivity(intent);
         } catch (Exception e) {
-            L.d(e.getMessage(), e);
+            LogUtils.d(e.getMessage(), e);
             return false;
         }
         return true;

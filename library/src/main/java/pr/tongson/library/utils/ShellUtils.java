@@ -10,12 +10,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 
 /**
- * <pre>
- *     author:
- *     blog  :
- *     time  :
- *     desc  : utils derry
- * </pre>
+ * @author derry老师
  */
 public final class ShellUtils {
 
@@ -66,9 +61,7 @@ public final class ShellUtils {
      * @param isNeedResultMsg True to return the message of result, false otherwise.
      * @return the single {@link CommandResult} instance
      */
-    public static CommandResult execCmd(final String command,
-                                        final boolean isRooted,
-                                        final boolean isNeedResultMsg) {
+    public static CommandResult execCmd(final String command, final boolean isRooted, final boolean isNeedResultMsg) {
         return execCmd(new String[]{command}, isRooted, isNeedResultMsg);
     }
 
@@ -80,12 +73,8 @@ public final class ShellUtils {
      * @param isNeedResultMsg True to return the message of result, false otherwise.
      * @return the single {@link CommandResult} instance
      */
-    public static CommandResult execCmd(final List<String> commands,
-                                        final boolean isRooted,
-                                        final boolean isNeedResultMsg) {
-        return execCmd(commands == null ? null : commands.toArray(new String[]{}),
-                isRooted,
-                isNeedResultMsg);
+    public static CommandResult execCmd(final List<String> commands, final boolean isRooted, final boolean isNeedResultMsg) {
+        return execCmd(commands == null ? null : commands.toArray(new String[]{}), isRooted, isNeedResultMsg);
     }
 
     /**
@@ -96,9 +85,7 @@ public final class ShellUtils {
      * @param isNeedResultMsg True to return the message of result, false otherwise.
      * @return the single {@link CommandResult} instance
      */
-    public static CommandResult execCmd(final String[] commands,
-                                        final boolean isRooted,
-                                        final boolean isNeedResultMsg) {
+    public static CommandResult execCmd(final String[] commands, final boolean isRooted, final boolean isNeedResultMsg) {
         int result = -1;
         if (commands == null || commands.length == 0) {
             return new CommandResult(result, "", "");
@@ -126,12 +113,8 @@ public final class ShellUtils {
             if (isNeedResultMsg) {
                 successMsg = new StringBuilder();
                 errorMsg = new StringBuilder();
-                successResult = new BufferedReader(
-                        new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8)
-                );
-                errorResult = new BufferedReader(
-                        new InputStreamReader(process.getErrorStream(), StandardCharsets.UTF_8)
-                );
+                successResult = new BufferedReader(new InputStreamReader(process.getInputStream(), StandardCharsets.UTF_8));
+                errorResult = new BufferedReader(new InputStreamReader(process.getErrorStream(), StandardCharsets.UTF_8));
                 String line;
                 if ((line = successResult.readLine()) != null) {
                     successMsg.append(line);
@@ -174,11 +157,7 @@ public final class ShellUtils {
                 process.destroy();
             }
         }
-        return new CommandResult(
-                result,
-                successMsg == null ? "" : successMsg.toString(),
-                errorMsg == null ? "" : errorMsg.toString()
-        );
+        return new CommandResult(result, successMsg == null ? "" : successMsg.toString(), errorMsg == null ? "" : errorMsg.toString());
     }
 
     /**
@@ -198,9 +177,7 @@ public final class ShellUtils {
         @Override
         @NonNull
         public String toString() {
-            return "result: " + result + "\n" +
-                    "successMsg: " + successMsg + "\n" +
-                    "errorMsg: " + errorMsg;
+            return "result: " + result + "\n" + "successMsg: " + successMsg + "\n" + "errorMsg: " + errorMsg;
         }
     }
 }

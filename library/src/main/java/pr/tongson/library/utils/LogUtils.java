@@ -1,24 +1,16 @@
 package pr.tongson.library.utils;
 
-import android.annotation.TargetApi;
-import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.os.Build;
-import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- * 0⃣🐔偷来的L
- *
  * @author tongson
  */
-public class L {
+public class LogUtils {
 
     public static final String TAG = "TongsonDebug";
     private static String sTagPre = null;
@@ -57,7 +49,7 @@ public class L {
 
     private static String mLogDir = DEFAULT_LOG_DIR;
 
-    private L() {
+    private LogUtils() {
         throw new UnsupportedOperationException("u can't instantiate me...");
     }
 
@@ -78,16 +70,16 @@ public class L {
     /**
      * 设置日志的保存目录，默认为/sdcard/Immortal/.log/common
      *
-     * @param dir_path
+     * @param dirPath
      */
-    public static void setupLogDir(String dir_path) {
-        mLogDir = dir_path;
+    public static void setupLogDir(String dirPath) {
+        mLogDir = dirPath;
     }
 
     /**
      * 设置前缀TAG. Logcat的TAG标签将会以一下方式展示</br>
      * <pre>
-     * pretag|class|method|line
+     * preTag|class|method|line
      * </pre>
      * 使用preTag可以方便的与其他程序产生的日志进行分离
      *
@@ -105,7 +97,7 @@ public class L {
     }
 
 
-    //==================================INFO==================================
+    // ==================================INFO==================================
 
     public static void i(String msg, Throwable tr) {
         if (!Debug) {
@@ -137,10 +129,12 @@ public class L {
             msg = String.valueOf(objects);
         }
         log(INFO, tag, msg, null);
-    }//==================================INFO==================================
+    }
+
+    // ==================================INFO==================================
 
 
-    //==================================ERROR==================================
+    // ==================================ERROR==================================
 
     public static void e(String str) {
         if (!Debug) {
@@ -175,10 +169,11 @@ public class L {
             msg = String.valueOf(objects);
         }
         log(ERROR, tag, msg, null);
-    }//==================================ERROR==================================
+    }
+    // ==================================ERROR==================================
 
 
-    //==================================VERBOSE==================================
+    // ==================================VERBOSE==================================
 
     public static void v(String msg, Throwable tr) {
         if (!Debug) {
@@ -210,10 +205,12 @@ public class L {
             msg = String.valueOf(objects);
         }
         log(VERBOSE, tag, msg, null);
-    }//==================================VERBOSE==================================
+    }
+
+    // ==================================VERBOSE==================================
 
 
-    //==================================DEBUG==================================
+    // ==================================DEBUG==================================
 
     public static void d(String msg, Throwable tr) {
         if (!Debug) {
@@ -245,10 +242,11 @@ public class L {
             msg = String.valueOf(objects);
         }
         log(DEBUG, tag, msg, null);
-    }//==================================DEBUG==================================
+    }
+    // ==================================DEBUG==================================
 
 
-    //==================================WARN==================================
+    // ==================================WARN==================================
 
     public static void w(String msg) {
         if (!Debug) {
@@ -280,17 +278,19 @@ public class L {
             msg = String.valueOf(objects);
         }
         log(WARN, tag, msg, null);
-    }//==================================WARN==================================
+    }
+    // ==================================WARN==================================
 
 
-    //==================================printStackTrace==================================
+    // ==================================printStackTrace==================================
+
     public static void printStackTrace(Throwable t) {
         if (!Debug) {
             return;
         }
         log(ERROR, "", "", t);
     }
-    //==================================printStackTrace==================================
+    // ==================================printStackTrace==================================
 
 
     /**
@@ -299,15 +299,17 @@ public class L {
     private static String getLogTag() {
         StringBuilder builder = new StringBuilder();
         try {
+            builder.append("[CurrentThreadName:").append(Thread.currentThread().getName()).append(";");
             StackTraceElement stes[] = Thread.currentThread().getStackTrace();
             StackTraceElement ste = stes[6];
             final String steStr = ste.toString();
             String fileName = ste.getFileName();
             builder.append(fileName.substring(0, fileName.lastIndexOf(".") + 1));
             builder.append(ste.getMethodName());
-            builder.append(steStr.substring(steStr.lastIndexOf("("), steStr.length()));
+            builder.append(steStr.substring(steStr.lastIndexOf("(")));
+            builder.append("]");
         } catch (Exception e) {
-            // ignore
+            e.printStackTrace();
         }
         return builder.toString();
     }
@@ -326,23 +328,14 @@ public class L {
         if (!Debug) {
             return;
         }
-        String logTag = getLogTag();
-        StringBuilder logmsg = new StringBuilder();
-        //logmsg.append("[").append(sTagPre).append("]");
-        if (!TextUtils.isEmpty(tag)) {
-            if (tag.contains("[")) {
-                logmsg.append(tag);
-            } else {
-                logmsg.append("[").append(tag).append("]");
-            }
-        }
-        logmsg.append(msg);
-        logmsg.append("\n");
+        StringBuilder logMsg = new StringBuilder();
+        logMsg.append(msg);
         // 加上tr
         if (tr != null) {
-            logmsg.append(Log.getStackTraceString(tr));
+            logMsg.append("\n");
+            logMsg.append(Log.getStackTraceString(tr));
         }
-        Log.println(priority, logTag, logmsg.toString());
+        Log.println(priority, getLogTag(), logMsg.toString());
     }
 
     /**
@@ -378,14 +371,6 @@ public class L {
             log.append(Log.getStackTraceString(tr));
         }
         return log.toString();
-    }
-
-    public static void Toast(String str, Context context) {
-        Toast.makeText(context, str, Toast.LENGTH_SHORT).show();
-    }
-
-    public static void Toast(int resId, Context context) {
-        Toast.makeText(context, resId, Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -426,34 +411,4 @@ public class L {
         }
     }
 
-    /**
-     * 获取设备与应用的详细信息
-     *
-     * @param context 上下文
-     */
-    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
-    public static String getDeviceInfo(Context context) {
-        StringBuilder builder = new StringBuilder();
-        try {
-            PackageInfo info = PackageUtils.getPackageInfo(context);
-            builder.append("----- 应用程序信息 ------").append("\n");
-            builder.append("应用程序包名:").append(info.packageName).append("\n");
-            builder.append("版本信息:").append(info.versionName).append("\n");
-            builder.append("版本号:").append(info.versionCode).append("\n");
-        } catch (Exception e1) {
-        }
-        try {
-            builder.append("\n\n----- 设备信息 ----\n");
-            builder.append("DEVICE ").append(Build.DEVICE).append("\n");
-            builder.append("ID ").append(Build.ID).append("\n");
-            builder.append("MANUFACTURER ").append(Build.MANUFACTURER).append("\n");
-            builder.append("MODEL ").append(Build.MODEL).append("\n");
-            builder.append("PRODUCT ").append(Build.PRODUCT).append("\n");
-            builder.append("VERSION_CODES.BASE ").append(Build.VERSION_CODES.BASE).append("\n");
-            builder.append("VERSION.RELEASE ").append(Build.VERSION.RELEASE).append("\n");
-            builder.append("SDK").append(Build.VERSION.SDK_INT).append("\n");
-        } catch (Exception e) {
-        }
-        return builder.toString();
-    }
 }

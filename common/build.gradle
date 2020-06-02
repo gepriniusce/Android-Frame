@@ -1,14 +1,12 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-def appId = rootProject.ext.appId
 def androidId = rootProject.ext.androidId
-def supportDependenciesKotlinX                              = rootProject.ext.supportDependenciesKotlinX
+def supportDependenciesKotlinX = rootProject.ext.supportDependenciesKotlinX
 def testDependenciesX = rootProject.ext.testDependenciesX
 android {
     compileSdkVersion androidId.compileSdkVersion
     defaultConfig {
-        applicationId appId.appId
         minSdkVersion androidId.minSdkVersion
         targetSdkVersion androidId.targetSdkVersion
         versionCode androidId.versionCode
@@ -16,9 +14,7 @@ android {
         testInstrumentationRunner androidId.testInstrumentationRunner
 
         consumerProguardFiles 'consumer-rules.pro'
-        multiDexEnabled true
     }
-
 
     buildTypes {
         release {
@@ -44,6 +40,6 @@ dependencies {
     testImplementation testDependenciesX.junit
     androidTestImplementation testDependenciesX.xjunitext
     androidTestImplementation testDependenciesX.espresso
-    implementation 'com.android.support:multidex:1.0.3'
-    implementation project(path: ':common')
+    api project(path: ':library')
+    api project(path: ':libraries:http')
 }

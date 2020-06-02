@@ -1,4 +1,4 @@
-package pr.tongson.base
+package pr.tongson.common
 
 import org.junit.Test
 
