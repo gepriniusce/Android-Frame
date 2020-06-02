@@ -5,7 +5,6 @@ import org.junit.Test;
 import java.io.IOException;
 
 import okhttp3.ResponseBody;
-import pr.tongson.lib.http.temp.ResultBean;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -39,18 +38,18 @@ public class HttpUnitTest {
     }
 
     /**
-     * 同步 ResultBean
+     * 同步 TestResultBean
      */
     @Test
     public void testJson() {
         System.out.println("testJson");
-        Call<ResultBean> call = BaseApiManager.getInstance().getApiService().getAritrilListGson(1);
+        Call<TestResultBean> call = BaseApiManager.getInstance().getApiService().getAritrilListGson(1);
         try {
-            Response<ResultBean> response = call.execute();
+            Response<TestResultBean> response = call.execute();
             System.out.println("onSuccess:" + response.isSuccessful());
             System.out.println("code:" + response.code());
             if (response.isSuccessful()) {
-                ResultBean resultBean = response.body();
+                TestResultBean resultBean = response.body();
                 System.out.println("resultBean:" + resultBean);
                 System.out.println("resultBean:" + resultBean.getData().toString());
             }

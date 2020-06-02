@@ -1,7 +1,7 @@
 package pr.tongson.lib.http;
 
+
 import okhttp3.ResponseBody;
-import pr.tongson.lib.http.temp.ResultBean;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -27,6 +27,8 @@ public interface BaseApiService {
      * 获取首页文章数据
      */
     @GET("article/list/{page}/json")
-    Call<ResultBean> getAritrilListGson(@Path("page") int pageNo);
+    Call<TestResultBean> getAritrilListGson(@Path("page") int pageNo);
+
+
 
 }
