@@ -5,7 +5,7 @@ import androidx.databinding.ViewDataBinding;
 import pr.tongson.library.mvvm.bindingproxy.BaseClickProxy;
 import pr.tongson.library.mvvm.recycler.holder.RMVVMViewHolder;
 import pr.tongson.library.mvvm.recycler.listener.IBaseMVVMRViewItem;
-import pr.tongson.library.utils.L;
+import pr.tongson.library.utils.LogUtils;
 
 /**
  * @Email:289286298@qq.com
@@ -45,7 +45,7 @@ public abstract class BaseRMVVMViewItem<T, B extends ViewDataBinding> implements
      */
     @Override
     public void initView(RMVVMViewHolder holder) {
-        L.i("Tongson initView");
+        LogUtils.i("Tongson initView");
     }
 
     /**

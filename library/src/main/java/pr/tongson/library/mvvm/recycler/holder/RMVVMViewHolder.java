@@ -12,7 +12,7 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.RecyclerView;
 import pr.tongson.library.mvvm.BaseDataBindingConfig;
 import pr.tongson.library.mvvm.recycler.item.BaseRMVVMViewItem;
-import pr.tongson.library.utils.L;
+import pr.tongson.library.utils.LogUtils;
 
 /**
  * @Email:289286298@qq.com
@@ -43,7 +43,7 @@ public class RMVVMViewHolder<B extends ViewDataBinding> extends RecyclerView.Vie
         BaseDataBindingConfig dataBindingConfig = viewItem.getDataBindingConfig();
         B binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), viewItem.getItemLayout(), parent, false);
         if (parent.getContext() instanceof LifecycleOwner) {
-            L.i("Tongson setLifecycleOwner");
+            LogUtils.i("Tongson setLifecycleOwner");
             binding.setLifecycleOwner((LifecycleOwner) parent.getContext());
         }
         SparseArray bindingParams = dataBindingConfig.getBindingParams();

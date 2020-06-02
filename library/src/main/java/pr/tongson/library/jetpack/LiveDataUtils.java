@@ -2,17 +2,8 @@ package pr.tongson.library.jetpack;
 
 import android.os.Looper;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
-
-import androidx.annotation.NonNull;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
-import pr.tongson.library.utils.L;
 
 /**
  * @Email:289286298@qq.com
@@ -20,7 +11,7 @@ import pr.tongson.library.utils.L;
  * @Date 2020/4/20
  * @Version
  * @Since
- * @Description 用单例来管理MutableLiveDatas
+ * @Description 用单例来管理MutableLiveData
  */
 public class LiveDataUtils {
     private static LiveDataUtils ourInstance = new LiveDataUtils();

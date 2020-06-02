@@ -9,7 +9,7 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
-import pr.tongson.library.utils.L;
+import pr.tongson.library.utils.LogUtils;
 
 /**
  * @Email:289286298@qq.com
@@ -64,6 +64,6 @@ public class HookMutableLiveDate<T> extends MutableLiveData<T> {
         mVersion.setAccessible(true);
         Object mVersionValue = mVersion.get(this);
         mLastVersion.set(objectWrapper, mVersionValue);
-        L.i("Tongson hook:" + mVersionValue);
+        LogUtils.i("Tongson hook:" + mVersionValue);
     }
 }
