@@ -2,10 +2,8 @@ package pr.tongson.template.pad.tab;
 
 import pr.tongson.library.mvvm.BaseDataBindingConfig;
 import pr.tongson.library.mvvm.BaseMVVMViewModel;
-import pr.tongson.library.mvvm.bindingproxy.BaseClickProxy;
 import pr.tongson.library.mvvm.recycler.holder.RMVVMViewHolder;
 import pr.tongson.library.mvvm.recycler.item.BaseRMVVMViewItem;
-import pr.tongson.library.utils.L;
 import pr.tongson.template.pad.R;
 import pr.tongson.template.pad.databinding.ItemviewTabBinding;
 

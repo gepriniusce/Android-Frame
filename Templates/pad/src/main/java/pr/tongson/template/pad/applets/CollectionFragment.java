@@ -9,7 +9,7 @@ import pr.tongson.library.mvvm.BaseMVVMViewModel;
 import pr.tongson.library.mvvm.recycler.adapter.RMVVMViewAdapter;
 import pr.tongson.library.mvvm.recycler.item.BaseRMVVMViewItem;
 import pr.tongson.library.recycler.listener.IOnItemListener;
-import pr.tongson.library.utils.L;
+import pr.tongson.library.utils.LogUtils;
 import pr.tongson.template.pad.BR;
 import pr.tongson.template.pad.R;
 import pr.tongson.template.pad.applets.item.AppViewItem;
@@ -65,7 +65,7 @@ public class CollectionFragment extends BaseMVVMFragment implements IOnItemListe
 
     @Override
     public void onItemClick(View view, Object entity, int position) {
-        L.i("Tongson onItemClick");
+        LogUtils.i("Tongson onItemClick");
         Toast.makeText(view.getContext(), "onItemClick:" + entity.toString(), Toast.LENGTH_SHORT).show();
     }
 

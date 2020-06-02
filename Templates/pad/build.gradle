@@ -12,6 +12,7 @@ android {
         versionCode androidId.versionCode
         versionName androidId.versionName
         testInstrumentationRunner androidId.testInstrumentationRunner
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -46,5 +47,5 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment:2.2.2'
     implementation 'androidx.navigation:navigation-ui:2.2.2'
 
-    implementation project(path: ':base')
+    implementation project(path: ':common')
 }
