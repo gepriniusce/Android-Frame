@@ -1,0 +1,10 @@
+apply from: "../../common-build/apply-app.gradle"
+
+applyAndroid(this.project)
+android {
+    defaultConfig {
+        applicationId "pr.tongson.location"
+    }
+}
+
+applyDependencies(this.project)

@@ -1,0 +1,15 @@
+void applyDependencies(Project project) {
+    project.dependencies {
+        implementation fileTree(dir: 'libs', include: ['*.jar'])
+        supportDependenciesKotlinX.each {
+            k, v -> implementation v
+        }
+        testImplementation testDependenciesX.junit
+        androidTestImplementation testDependenciesX.xjunitext
+        androidTestImplementation testDependenciesX.espresso
+    }
+}
+
+ext {
+    applyDependencies = this.&applyDependencies
+}

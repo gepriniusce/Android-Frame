@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStore;
 import androidx.lifecycle.ViewModelStoreOwner;
+import pr.tongson.library.common.BaseCommonApp;
 
 /**
  * @Email:289286298@qq.com
@@ -18,7 +19,7 @@ import androidx.lifecycle.ViewModelStoreOwner;
  * @Description :
  * 为什么要 “implements ViewModelStoreOwner” 就是为了 让整个项目持有一份 被观察者接口，为了完成共享
  */
-public class BaseJetpackApp extends Application implements ViewModelStoreOwner {
+public class BaseJetpackApp extends BaseCommonApp implements ViewModelStoreOwner {
     private ViewModelStore mAppViewModelStore;
     private ViewModelProvider.Factory mFactory;
 

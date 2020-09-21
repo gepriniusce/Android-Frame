@@ -11,11 +11,14 @@ import org.junit.Test
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+        //assertEquals(4, 2 + 2)
 
+        //DDD.main(null)
         //System.out.println()
-        println(re())
-        println(WithException())
+        //println(re())
+        //println(WithException())
+
+        Read();
     }
 
     fun re(): String {

@@ -1,48 +1,17 @@
-apply plugin: 'com.android.application'
+apply from: "../../common-build/apply-app.gradle"
 
-def androidId = rootProject.ext.androidId
-def supportDependencies = rootProject.ext.supportDependenciesX
-def testDependencies = rootProject.ext.testDependenciesX
+applyAndroid(this.project)
 android {
-    compileSdkVersion androidId.compileSdkVersion
     defaultConfig {
         applicationId "pr.tongson.template.pad"
-        minSdkVersion androidId.minSdkVersion
-        targetSdkVersion androidId.targetSdkVersion
-        versionCode androidId.versionCode
-        versionName androidId.versionName
-        testInstrumentationRunner androidId.testInstrumentationRunner
         multiDexEnabled true
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-
-    compileOptions {
-        sourceCompatibility = 1.8
-        targetCompatibility = 1.8
-    }
-
-    dataBinding {
-        enabled = true
     }
 }
 
+applyDependencies(this.project)
+
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    supportDependencies.each {
-        k, v -> implementation v
-    }
-
-    testImplementation testDependencies.junit
-    androidTestImplementation testDependencies.xjunitext
-    androidTestImplementation testDependencies.espresso
+    implementation support.multidex
 
     implementation 'androidx.navigation:navigation-fragment:2.2.2'
     implementation 'androidx.navigation:navigation-ui:2.2.2'

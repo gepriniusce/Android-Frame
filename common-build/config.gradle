@@ -2,6 +2,16 @@ ext {
     //生產/開發環境（正式/測試）
     isRelease = true
     componnet_router_doc_folder = "~AndroidStudioProjects/Tongson/Android-Frame/Doc"
+    buildToolsVersion = BUILD_TOOLS_VERSION.toInteger()
+    compileSdkVersionConfig = COMPILE_SDK_VERSION.toInteger()
+    minSdkVersionConfig = MIN_SDK_VERSION.toInteger()
+    targetSdkVersionConfig = TARGET_SDK_VERSION.toInteger()
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+    currentVersionCode = getVerCode()
+    versionCode = 1
+    versionName = "1.0.0"
+    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
     //建立Map存儲，對象名、key都可以自定義，groovy糖果語法，非常靈活
     androidId = [
@@ -28,7 +38,11 @@ ext {
             component_version: "1.8.0",
             androidx         : "1.1.0",
             kotlin_version   : "1.3.72",
-            lifecycle        : "2.2.0"
+            LIFECYCLE_VERSION: "2.2.0"
+    ]
+
+    support = [
+            "multidex": "com.android.support:multidex:1.0.3"
     ]
 
     supportDependenciesX = [
@@ -38,13 +52,13 @@ ext {
             "xannotation"      : "androidx.annotation:annotation:${versions.androidx}",
             "xsupportv4"       : "androidx.legacy:legacy-support-v4:1.0.0",
             "xconstraintlayout": "androidx.constraintlayout:constraintlayout:1.1.3",
-            "xlifecycle"       : "androidx.lifecycle:lifecycle-extensions:${versions.lifecycle}",
+            "xlifecycle"       : "androidx.lifecycle:lifecycle-extensions:${versions.LIFECYCLE_VERSION}",
     ]
 
     supportDependenciesKotlinX = [
             "stdlib"           : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin_version}",
             "ktx"              : "androidx.core:core-ktx:1.2.0",
-            "xViewmodelKt"     : "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifecycle}",
+            "xViewmodelKt"     : "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.LIFECYCLE_VERSION}",
             "coroutines"       : "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5",
             "anko"             : "org.jetbrains.anko:anko:0.10.8",
             "material"         : "com.google.android.material:material:${versions.androidx}",
@@ -53,7 +67,7 @@ ext {
             "xannotation"      : "androidx.annotation:annotation:${versions.androidx}",
             "xsupportv4"       : "androidx.legacy:legacy-support-v4:1.0.0",
             "xconstraintlayout": "androidx.constraintlayout:constraintlayout:1.1.3",
-            "xlifecycle"       : "androidx.lifecycle:lifecycle-extensions:${versions.lifecycle}"
+            "xlifecycle"       : "androidx.lifecycle:lifecycle-extensions:${versions.LIFECYCLE_VERSION}"
     ]
 
     testDependenciesX = [
@@ -132,4 +146,10 @@ ext {
 
     ]
 
+}
+
+def getVerCode() {
+    def date = new Date()
+    def versionCode = date.format('yyyyMMdd')
+    return Integer.parseInt(versionCode)
 }

@@ -1,43 +1,4 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-def androidId = rootProject.ext.androidId
-def supportDependenciesKotlinX = rootProject.ext.supportDependenciesKotlinX
-def testDependenciesX = rootProject.ext.testDependenciesX
-android {
-    compileSdkVersion androidId.compileSdkVersion
-    defaultConfig {
-        minSdkVersion androidId.minSdkVersion
-        targetSdkVersion androidId.targetSdkVersion
-        versionCode androidId.versionCode
-        versionName androidId.versionName
-        testInstrumentationRunner androidId.testInstrumentationRunner
+apply from: "../../common-build/apply-lib.gradle"
 
-        consumerProguardFiles 'consumer-rules.pro'
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-    compileOptions {
-        sourceCompatibility = 1.8
-        targetCompatibility = 1.8
-    }
-
-    dataBinding {
-        enabled = true
-    }
-}
-
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    supportDependenciesKotlinX.each {
-        k, v -> implementation v
-    }
-    testImplementation testDependenciesX.junit
-    androidTestImplementation testDependenciesX.xjunitext
-    androidTestImplementation testDependenciesX.espresso
-}
+applyAndroid(this.project)
+applyDependencies(this.project)
