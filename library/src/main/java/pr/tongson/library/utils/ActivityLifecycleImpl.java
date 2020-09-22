@@ -30,7 +30,7 @@ import androidx.annotation.NonNull;
 public class ActivityLifecycleImpl implements Application.ActivityLifecycleCallbacks {
 
     private static final String PERMISSION_ACTIVITY_CLASS_NAME = "com.blankj.utilcode.util.PermissionUtils$PermissionActivity";
-    final LinkedList<Activity> mActivityList = new LinkedList<>();
+    final LinkedList<Activity> mActivityList = new LinkedList<Activity>();
     final Map<Object, OnAppStatusChangedListener> mStatusListenerMap = new HashMap<>();
     final Map<Activity, Set<OnActivityDestroyedListener>> mDestroyedListenerMap = new HashMap<>();
 

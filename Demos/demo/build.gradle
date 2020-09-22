@@ -1,4 +1,16 @@
 apply from: "../../common-build/apply-app.gradle"
 
 applyAndroid(this.project)
+android {
+    defaultConfig {
+        multiDexEnabled true
+    }
+}
 applyDependencies(this.project)
+
+dependencies {
+    implementation project(path: ':common')
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
+}

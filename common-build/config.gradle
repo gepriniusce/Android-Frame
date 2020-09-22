@@ -6,8 +6,8 @@ ext {
     compileSdkVersionConfig = COMPILE_SDK_VERSION.toInteger()
     minSdkVersionConfig = MIN_SDK_VERSION.toInteger()
     targetSdkVersionConfig = TARGET_SDK_VERSION.toInteger()
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibilityConfig = JavaVersion.VERSION_1_8
+    targetCompatibilityConfig = JavaVersion.VERSION_1_8
     currentVersionCode = getVerCode()
     versionCode = 1
     versionName = "1.0.0"

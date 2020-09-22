@@ -19,7 +19,7 @@ public class BaseMVPPresenterImpl<T extends BaseMVPView> implements BaseMVPPrese
 
     @Override
     public void attachView(T view) {
-        this.mView = new SoftReference<>(view);
+        this.mView = new SoftReference<T>(view);
     }
 
     @Override

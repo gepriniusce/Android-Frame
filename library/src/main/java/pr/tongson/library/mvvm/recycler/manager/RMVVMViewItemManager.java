@@ -16,7 +16,7 @@ public class RMVVMViewItemManager<T,B extends ViewDataBinding> {
     /**
      *
      */
-    private SparseArrayCompat<BaseRMVVMViewItem<T, B>> mViewItemStyles = new SparseArrayCompat<>();
+    private SparseArrayCompat<BaseRMVVMViewItem<T, B>> mViewItemStyles = new SparseArrayCompat<BaseRMVVMViewItem<T, B>>();
 
     /**
      * @param item

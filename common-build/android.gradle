@@ -18,8 +18,8 @@ void applyAndroid(Project project) {
             }
         }
         compileOptions {
-            sourceCompatibility = sourceCompatibility
-            targetCompatibility = targetCompatibility
+            sourceCompatibility = sourceCompatibilityConfig
+            targetCompatibility = targetCompatibilityConfig
         }
 
         dataBinding {

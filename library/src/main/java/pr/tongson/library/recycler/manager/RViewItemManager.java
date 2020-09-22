@@ -15,7 +15,7 @@ public class RViewItemManager<T> {
     /**
      *
      */
-    private SparseArrayCompat<BaseRViewItem<T>> mViewItemStyles = new SparseArrayCompat<>();
+    private SparseArrayCompat<BaseRViewItem<T>> mViewItemStyles = new SparseArrayCompat<BaseRViewItem<T>>();
 
     /**
      * @param item
