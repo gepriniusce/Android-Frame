@@ -2,6 +2,7 @@ package pr.tongson.demo;
 
 import androidx.appcompat.app.AppCompatActivity;
 import pr.tongson.library.handler.WeakHandler;
+import pr.tongson.library.utils.L;
 import pr.tongson.library.utils.LogUtils;
 
 import android.os.Bundle;
@@ -25,22 +26,26 @@ public class JavaActivity extends AppCompatActivity {
             @Override
             public void run() {
                 LogUtils.i("Tongson isFinishing():" + isFinishing());
+                L.i("Tongson isFinishing():" + isFinishing());
 //                if (!isFinishing()) {
                     log();
 //                }
             }
         }, 2000);
         LogUtils.i("Tongson onCreate");
+        L.i("Tongson onCreate");
     }
 
     private void log() {
         LogUtils.i("Tongson:" + this);
+        L.i("Tongson:" + this);
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         LogUtils.i("Tongson onBackPressed");
+        L.i("Tongson onBackPressed");
         finish();
     }
 
@@ -48,11 +53,13 @@ public class JavaActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         LogUtils.i("Tongson onDestroy");
+        L.i("Tongson onDestroy");
 
         if (mHandler != null) {
             mHandler.removeCallbacksAndMessages(null);
             mHandler = null;
             LogUtils.i("Tongson removeCallbacksAndMessages:" + mHandler);
+            L.i("Tongson removeCallbacksAndMessages:" + mHandler);
         }
     }
 }

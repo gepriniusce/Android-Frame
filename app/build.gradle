@@ -1,4 +1,5 @@
 apply from: "../common-build/apply-app.gradle"
+apply plugin: 'kotlin-android'
 
 applyAndroid(this.project)
 android {
@@ -11,6 +12,7 @@ android {
 dependencies {
     implementation support.multidex
     implementation project(path: ':common')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
 
 applyDependencies(this.project)

@@ -34,7 +34,7 @@ public class NetwrokBroadcastReceiver extends BroadcastReceiver {
         if (intent == null) {
             return;
         }
-        LogUtils.i("NetwrokBroadcastReceiver onReceive action:" + intent.getAction());
+        // LogUtils.i("NetwrokBroadcastReceiver onReceive action:" + intent.getAction());
         Toast.makeText(context, intent.getAction(), Toast.LENGTH_SHORT).show();
     }
 

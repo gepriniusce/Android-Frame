@@ -6,6 +6,7 @@ import android.util.Log;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Array;
 
 /**
  * @author tongson
@@ -15,7 +16,7 @@ public class LogUtils {
     public static final String TAG = "TongsonDebug";
     private static String sTagPre = null;
 
-    public static boolean Debug = true;
+    public static boolean isDebug = true;
     private static boolean enableWrite = false;
 
     public static final int VERBOSE = Log.VERBOSE;
@@ -56,8 +57,8 @@ public class LogUtils {
     /**
      * 是否设置调试模式
      */
-    public static void setDebug(boolean isdebug) {
-        Debug = isdebug;
+    public static void setIsDebug(boolean isdebug) {
+        isDebug = isdebug;
     }
 
     /**
@@ -100,14 +101,14 @@ public class LogUtils {
     // ==================================INFO==================================
 
     public static void i(String msg, Throwable tr) {
-        if (!Debug) {
+        if (!isDebug) {
             return;
         }
         i(getLogTag(), msg, tr);
     }
 
     public static void i(String msg) {
-        if (!Debug) {
+        if (!isDebug) {
             return;
         }
         i(getLogTag(), msg, (Throwable) null);
@@ -137,21 +138,21 @@ public class LogUtils {
     // ==================================ERROR==================================
 
     public static void e(String str) {
-        if (!Debug) {
+        if (!isDebug) {
             return;
         }
         e(getLogTag(), str, (Throwable) null);
     }
 
     public static void e(String msg, Throwable tr) {
-        if (!Debug) {
+        if (!isDebug) {
             return;
         }
         e(getLogTag(), msg, tr);
     }
 
     public static void e(Object tag, String msg) {
-        if (!Debug) {
+        if (!isDebug) {
             return;
         }
         e(tag, msg, (Throwable) null);
@@ -176,14 +177,14 @@ public class LogUtils {
     // ==================================VERBOSE==================================
 
     public static void v(String msg, Throwable tr) {
-        if (!Debug) {
+        if (!isDebug) {
             return;
         }
         v(getLogTag(), msg, tr);
     }
 
     public static void v(String msg) {
-        if (!Debug) {
+        if (!isDebug) {
             return;
         }
         v(getLogTag(), msg, (Throwable) null);
@@ -213,14 +214,14 @@ public class LogUtils {
     // ==================================DEBUG==================================
 
     public static void d(String msg, Throwable tr) {
-        if (!Debug) {
+        if (!isDebug) {
             return;
         }
         d(getLogTag(), msg, tr);
     }
 
     public static void d(String msg) {
-        if (!Debug) {
+        if (!isDebug) {
             return;
         }
         d(getLogTag(), msg, (Throwable) null);
@@ -249,14 +250,14 @@ public class LogUtils {
     // ==================================WARN==================================
 
     public static void w(String msg) {
-        if (!Debug) {
+        if (!isDebug) {
             return;
         }
         w(getLogTag(), msg, (Throwable) null);
     }
 
     public static void w(String msg, Throwable tr) {
-        if (!Debug) {
+        if (!isDebug) {
             return;
         }
         w(getLogTag(), msg, tr);
@@ -285,13 +286,12 @@ public class LogUtils {
     // ==================================printStackTrace==================================
 
     public static void printStackTrace(Throwable t) {
-        if (!Debug) {
+        if (!isDebug) {
             return;
         }
         log(ERROR, "", "", t);
     }
     // ==================================printStackTrace==================================
-
 
     /**
      * 获取类名与方法名
@@ -299,19 +299,39 @@ public class LogUtils {
     private static String getLogTag() {
         StringBuilder builder = new StringBuilder();
         try {
-            builder.append("[CurrentThreadName:").append(Thread.currentThread().getName()).append(";");
-            StackTraceElement stes[] = Thread.currentThread().getStackTrace();
-            StackTraceElement ste = stes[6];
-            final String steStr = ste.toString();
-            String fileName = ste.getFileName();
-            builder.append(fileName.substring(0, fileName.lastIndexOf(".") + 1));
-            builder.append(ste.getMethodName());
-            builder.append(steStr.substring(steStr.lastIndexOf("(")));
-            builder.append("]");
+            StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
+            int stackOffset=getStackOffset(stackTraceElements);
+            stackOffset++;
+            StackTraceElement currentElement= stackTraceElements[stackOffset];
+            builder.append("[CurrentThreadName:").
+                    append(Thread.currentThread().getName()).
+                    append(";").
+                    append(currentElement.getClassName()).
+                    append(".").
+                    append(currentElement.getMethodName()).
+                    append("(").
+                    append(currentElement.getFileName()).
+                    append(":").
+                    append(currentElement.getLineNumber()).
+                    append(")");
+            return builder.toString();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return builder.toString();
+    }
+
+    private static int getStackOffset(StackTraceElement[] trace) {
+        int minStackOffset = 3;
+        while (minStackOffset < trace.length) {
+            StackTraceElement e = trace[minStackOffset];
+            String name = e.getClassName();
+            if (!name.equals(LogUtils.class.getName())) {
+                return --minStackOffset;
+            }
+            minStackOffset++;
+        }
+        return -1;
     }
 
     /**
@@ -325,7 +345,7 @@ public class LogUtils {
         if (enableWrite && (WARN == priority || ERROR == priority || VERBOSE == priority)) {
             writeLogFile(getLogStyle(priority, tag, msg, tr));
         }
-        if (!Debug) {
+        if (!isDebug) {
             return;
         }
         StringBuilder logMsg = new StringBuilder();
